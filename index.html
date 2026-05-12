@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlayWorld Shop — Toys, Cards & Games in Cebu</title>
+  <meta name="description" content="PlayWorld Shop — Cebu's best toy store for action figures, Pokémon cards, LEGO sets, board games and more. Shop online or visit us in Cebu City." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #5c54e8;
+      --indigo-dark: #4740d4;
+      --indigo-light: #eeeeff;
+      --amber: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --text: #1a1a2e;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8f7ff;
+      --white: #fff;
+      --card-shadow: 0 2px 12px rgba(92,84,232,0.07);
+      --card-shadow-hover: 0 8px 32px rgba(92,84,232,0.15);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; gap: 0; height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+      color: var(--indigo); text-decoration: none; margin-right: 2rem; white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 2px; flex: 1; }
+    .nav-links a {
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px;
+      transition: color .15s, background .15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); background: var(--indigo-light); }
+    .nav-cart {
+      margin-left: auto; background: var(--indigo); color: #fff; border: none;
+      border-radius: var(--radius-sm); padding: 9px 20px; font-weight: 700;
+      font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+      font-family: inherit; transition: background .15s;
+    }
+    .nav-cart:hover { background: var(--indigo-dark); }
+    .cart-badge {
+      background: #fff; color: var(--indigo); border-radius: 20px;
+      font-size: 12px; font-weight: 900; padding: 1px 7px; min-width: 22px; text-align: center;
+    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+
+    /* ── SECTIONS ── */
+    section { display: none; }
+    section.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 90vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(160deg, #f0effe 0%, #fdf6ff 50%, #f0fdf9 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero-floats { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-floats span {
+      position: absolute; font-size: 60px; opacity: 0.12;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(8deg); }
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700; color: var(--indigo); line-height: 1.1; margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--amber); }
+    .hero p { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--muted); max-width: 520px; margin-bottom: 2rem; }
+    .btn-primary {
+      background: var(--indigo); color: #fff; border: none; border-radius: var(--radius);
+      padding: 16px 40px; font-size: 17px; font-weight: 800; cursor: pointer;
+      font-family: inherit; transition: transform .15s, background .15s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--indigo-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent; color: var(--indigo); border: 2px solid var(--indigo);
+      border-radius: var(--radius); padding: 14px 32px; font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: background .15s; display: inline-block;
+    }
+    .btn-secondary:hover { background: var(--indigo-light); }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .hero-badges { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 3rem; }
+    .hero-badge {
+      background: #fff; border: 1px solid var(--border); border-radius: 40px;
+      padding: 8px 20px; font-size: 13px; font-weight: 700; color: var(--muted);
+      box-shadow: var(--card-shadow);
+    }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .section-title {
+      font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700; color: var(--text); margin-bottom: 0.5rem;
+    }
+    .section-sub { color: var(--muted); font-size: 16px; margin-bottom: 2.5rem; }
+
+    /* ── FEATURE STRIPS ── */
+    .features-strip {
+      background: var(--indigo); padding: 1.25rem 2rem;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .features-strip span { color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+
+    /* ── CATEGORIES ── */
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+    .cat-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem 1rem; text-align: center; cursor: pointer;
+      transition: transform .2s, box-shadow .2s; box-shadow: var(--card-shadow);
+    }
+    .cat-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
+    .cat-card .cat-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+    .cat-card h3 { font-weight: 800; color: var(--text); font-size: 16px; }
+    .cat-card p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* ── PRODUCTS ── */
+    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
+    .filter-bar input {
+      flex: 1; min-width: 200px; padding: 10px 16px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-family: inherit; font-size: 14px;
+      outline: none; transition: border-color .15s;
+    }
+    .filter-bar input:focus { border-color: var(--indigo); }
+    .filter-btn {
+      padding: 9px 18px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+      background: var(--white); font-family: inherit; font-weight: 700; font-size: 13px;
+      cursor: pointer; color: var(--muted); transition: all .15s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.25rem; }
+    .product-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem; display: flex; flex-direction: column; gap: 10px;
+      box-shadow: var(--card-shadow); transition: transform .2s, box-shadow .2s;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
+    .product-emoji { font-size: 56px; text-align: center; display: block; }
+    .product-meta { display: flex; justify-content: space-between; align-items: center; }
+    .product-badge {
+      font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-toys { background: #fff8e6; color: #b45309; }
+    .badge-cards { background: #eeeeff; color: #4740d4; }
+    .badge-board { background: #ecfdf5; color: #059669; }
+    .badge-other { background: #fdf2f8; color: #9d174d; }
+    .product-stock { font-size: 12px; }
+    .stock-ok { color: var(--green); font-weight: 700; }
+    .stock-low { color: var(--red); font-weight: 700; }
+    .product-name { font-weight: 800; font-size: 15px; color: var(--text); }
+    .product-desc { font-size: 13px; color: var(--muted); flex: 1; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .product-price { font-weight: 900; font-size: 22px; color: var(--indigo); }
+    .add-btn {
+      background: var(--indigo); color: #fff; border: none; border-radius: var(--radius-sm);
+      padding: 9px 18px; font-weight: 700; font-size: 13px; cursor: pointer;
+      font-family: inherit; transition: background .15s, transform .1s;
+    }
+    .add-btn:hover { background: var(--indigo-dark); }
+    .add-btn:active { transform: scale(0.96); }
+    .add-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* ── BESTSELLERS / FEATURED ── */
+    .bestsellers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.25rem; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--indigo-light); padding: 4rem 1.5rem; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
+    .testi-card {
+      background: var(--white); border-radius: var(--radius); padding: 1.5rem;
+      border: 1px solid var(--border); box-shadow: var(--card-shadow);
+    }
+    .testi-stars { color: var(--amber); font-size: 18px; margin-bottom: 10px; }
+    .testi-text { color: var(--text); font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--indigo);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px;
+    }
+    .testi-name { font-weight: 700; font-size: 14px; }
+    .testi-loc { font-size: 12px; color: var(--muted); }
+
+    /* ── ABOUT ── */
+    .about-hero {
+      background: linear-gradient(135deg, var(--indigo) 0%, #7c6ef7 100%);
+      padding: 5rem 1.5rem; text-align: center; color: #fff;
+    }
+    .about-hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; }
+    .about-hero p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+    .about-card { background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid var(--border); box-shadow: var(--card-shadow); }
+    .about-card h2 { font-family: 'Fraunces', serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--indigo); }
+    .about-card p { color: var(--muted); line-height: 1.8; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .team-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 1.5rem; text-align: center; box-shadow: var(--card-shadow); }
+    .team-emoji { font-size: 52px; margin-bottom: 10px; display: block; }
+    .team-name { font-weight: 800; font-size: 14px; color: var(--text); }
+    .team-role { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-form-card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 2rem; box-shadow: var(--card-shadow); }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-weight: 700; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-family: inherit; font-size: 14px;
+      outline: none; transition: border-color .15s; background: var(--bg);
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--indigo); background: var(--white); }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .contact-info-card { display: flex; flex-direction: column; gap: 12px; }
+    .info-item {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--card-shadow);
+    }
+    .info-icon { font-size: 26px; flex-shrink: 0; }
+    .info-label { font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .info-val { font-weight: 700; color: var(--text); font-size: 15px; margin-top: 2px; }
+    .success-msg { text-align: center; padding: 3rem 1rem; }
+    .success-msg .check { font-size: 64px; display: block; margin-bottom: 16px; }
+    .success-msg h3 { font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 8px; }
+    .success-msg p { color: var(--muted); margin-bottom: 20px; }
+
+    /* ── CART DRAWER ── */
+    .cart-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200;
+    }
+    .cart-overlay.open { display: block; }
+    .cart-drawer {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 400px; max-width: 100vw;
+      background: var(--white); z-index: 201; display: flex; flex-direction: column;
+      transform: translateX(100%); transition: transform .3s ease;
+      box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+    }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-head { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .cart-head h2 { font-weight: 900; font-size: 18px; }
+    .cart-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--muted); line-height: 1; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .cart-empty { text-align: center; padding: 3rem 0; color: var(--muted); }
+    .cart-empty span { font-size: 56px; display: block; margin-bottom: 14px; }
+    .cart-item { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .cart-item-emoji { font-size: 32px; flex-shrink: 0; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .cart-item-price { font-size: 13px; color: var(--muted); }
+    .qty-controls { display: flex; gap: 6px; align-items: center; }
+    .qty-btn {
+      width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg); cursor: pointer; font-weight: 900; font-size: 16px;
+      display: flex; align-items: center; justify-content: center; transition: background .1s;
+    }
+    .qty-btn:hover { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+    .qty-num { font-weight: 700; min-width: 22px; text-align: center; }
+    .remove-btn { background: none; border: none; cursor: pointer; color: var(--red); font-size: 18px; }
+    .cart-footer { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); }
+    .cart-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; margin-bottom: 16px; }
+    .cart-total span:last-child { color: var(--indigo); }
+    .checkout-btn {
+      width: 100%; background: var(--indigo); color: #fff; border: none; border-radius: var(--radius);
+      padding: 16px; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit;
+      transition: background .15s;
+    }
+    .checkout-btn:hover { background: var(--indigo-dark); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: #1a1a2e; color: #fff; border-radius: 12px; padding: 13px 28px;
+      font-weight: 700; font-size: 14px; z-index: 400; transition: transform .3s ease;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2); white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: #fff; padding: 3rem 1.5rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; max-width: 1100px; margin: 0 auto 2rem; }
+    .footer-logo { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 12px; display: block; }
+    .footer-tagline { color: #94a3b8; font-size: 14px; line-height: 1.7; }
+    .footer-col h4 { font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 14px; }
+    .footer-col a { display: block; color: #cbd5e1; font-size: 14px; text-decoration: none; margin-bottom: 8px; transition: color .15s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #334155; padding-top: 1.5rem; text-align: center; color: #64748b; font-size: 13px; max-width: 1100px; margin: 0 auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); flex-direction: column; gap: 0; padding: 1rem; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 16px; }
+      .hamburger { display: block; margin-left: auto; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cart-drawer { width: 100vw; }
+      .features-strip { gap: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MODAL (order confirm) ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 20px; padding: 2.5rem; max-width: 440px; width: 90%; text-align: center; }
+    .modal h2 { font-size: 24px; font-weight: 900; margin-bottom: 12px; }
+    .modal p { color: var(--muted); margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; gap: 12px; justify-content: center; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#" onclick="showSection('home')">🧸 PlayWorld</a>
+  <div class="nav-links" id="nav-links">
+    <a href="#" class="active" onclick="navTo('home',this)">Home</a>
+    <a href="#" onclick="navTo('shop',this)">Shop</a>
+    <a href="#" onclick="navTo('about',this)">About Us</a>
+    <a href="#" onclick="navTo('contact',this)">Contact</a>
+  </div>
+  <button class="nav-cart" onclick="openCart()">
+    🛒 Cart <span class="cart-badge" id="cart-badge">0</span>
+  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ════ HOME ════ -->
+<section id="home" class="active">
+
+  <div class="hero">
+    <div class="hero-floats">
+      <span style="top:8%;left:5%;animation-delay:0s">🧸</span>
+      <span style="top:15%;right:8%;animation-delay:1.5s">🃏</span>
+      <span style="top:60%;left:3%;animation-delay:3s">🎮</span>
+      <span style="bottom:10%;right:5%;animation-delay:0.8s">🦕</span>
+      <span style="top:40%;right:3%;animation-delay:2s">🧩</span>
+      <span style="bottom:20%;left:8%;animation-delay:4s">⚔️</span>
+    </div>
+    <h1>Where Every Day<br>is <em>Play Day!</em></h1>
+    <p>Cebu's favorite shop for toys, trading cards, board games, and everything in between. Joy delivered fast!</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="navTo('shop', document.querySelector('.nav-links a:nth-child(2)'))">Shop Now</button>
+      <button class="btn-secondary" onclick="navTo('about', document.querySelector('.nav-links a:nth-child(3)'))">Our Story</button>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge">🚚 Same-day Cebu delivery</span>
+      <span class="hero-badge">💳 GCash & COD accepted</span>
+      <span class="hero-badge">♻️ 7-day easy returns</span>
+      <span class="hero-badge">⭐ Trusted since 2018</span>
+    </div>
+  </div>
+
+  <div class="features-strip">
+    <span>✈️ Ships Nationwide</span>
+    <span>🔒 Secure Checkout</span>
+    <span>📦 100% Authentic Products</span>
+    <span>🎁 Gift Wrapping Available</span>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-sub">Find exactly what you're looking for</p>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="navToShop('toys')">
+        <span class="cat-icon">🧸</span>
+        <h3>Toys & Figures</h3>
+        <p>LEGO, RC Cars, Stuffed Animals</p>
+      </div>
+      <div class="cat-card" onclick="navToShop('cards')">
+        <span class="cat-icon">🃏</span>
+        <h3>Trading Cards</h3>
+        <p>Pokémon, MTG, Yu-Gi-Oh!</p>
+      </div>
+      <div class="cat-card" onclick="navToShop('board')">
+        <span class="cat-icon">♟️</span>
+        <h3>Board Games</h3>
+        <p>Chess, Puzzle, Family Games</p>
+      </div>
+      <div class="cat-card" onclick="navToShop('other')">
+        <span class="cat-icon">🎁</span>
+        <h3>Gifts & More</h3>
+        <p>Collectibles, Accessories</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">🔥 Best Sellers</h2>
+    <p class="section-sub">What Cebuano families love most</p>
+    <div class="bestsellers-grid" id="bestsellers"></div>
+  </div>
+
+  <div class="testimonials">
+    <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem;margin-bottom:2rem;">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-sub">Hundreds of happy families across Cebu</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nagpadala kaayo dali! My son's Pokémon booster packs arrived the next day. Perfect condition and authentic! We'll definitely order again."</p>
+        <div class="testi-author"><div class="testi-avatar">MC</div><div><p class="testi-name">Maria C.</p><p class="testi-loc">Mandaue City</p></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Best toy shop sa Cebu! Nangita ko ug specific LEGO set and nakit-an nako dinhi. Presyo reasonable, serbisyo excellent!"</p>
+        <div class="testi-author"><div class="testi-avatar">JR</div><div><p class="testi-name">Jose R.</p><p class="testi-loc">Cebu City</p></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Ordered the chess set for my dad's birthday. Arrived gift-wrapped beautifully! The quality is amazing for the price. Highly recommended!"</p>
+        <div class="testi-author"><div class="testi-avatar">AL</div><div><p class="testi-name">Ana L.</p><p class="testi-loc">Lapu-Lapu City</p></div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════ SHOP ════ -->
+<section id="shop">
+  <div class="container">
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-sub">Quality toys & games for all ages</p>
+    <div class="filter-bar">
+      <input type="text" placeholder="🔍 Search products…" id="search-input" oninput="filterProducts()" />
+      <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-btn" onclick="setFilter('toys',this)">🧸 Toys</button>
+      <button class="filter-btn" onclick="setFilter('cards',this)">🃏 Cards</button>
+      <button class="filter-btn" onclick="setFilter('board',this)">♟️ Board</button>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+    <p id="no-results" style="display:none;color:var(--muted);text-align:center;padding:2rem">No products found. Try a different search!</p>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section id="about">
+  <div class="about-hero">
+    <h1>Our Story</h1>
+    <p>From a small kiosk to Cebu's most-loved toy shop — here's how PlayWorld came to be.</p>
+  </div>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-card">
+        <h2>How We Started</h2>
+        <p>PlayWorld Shop began in 2018 as a tiny kiosk inside SM City Cebu. Founder Juan dela Cruz, a lifelong toy collector and Pokémon card enthusiast, noticed that Cebuano families had nowhere local to find authentic collectibles and quality children's toys at fair prices.</p>
+        <br>
+        <p>Starting with just 50 card packs and 20 toys displayed on a folding table, the response from the community was overwhelming. Within three months, the kiosk had grown into a full stall — and within a year, PlayWorld had its first proper store.</p>
+      </div>
+      <div class="about-card">
+        <h2>Our Mission</h2>
+        <p>We believe play is not a luxury — it's how children learn, grow, and form lifelong memories with their families. Our mission is to make quality, imaginative play accessible to every Filipino family.</p>
+        <br>
+        <p>Every product we carry is hand-selected for quality and authenticity. We refuse to stock counterfeit or low-quality items, because your children deserve the real thing. We're proud to be a trusted name in Cebu for over 6 years.</p>
+      </div>
+    </div>
+
+    <div style="background:var(--indigo-light);border-radius:var(--radius);padding:2rem;margin-bottom:3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;text-align:center">
+      <div><p style="font-size:2.5rem;font-weight:900;color:var(--indigo)">6+</p><p style="color:var(--muted);font-size:14px">Years in Business</p></div>
+      <div><p style="font-size:2.5rem;font-weight:900;color:var(--indigo)">5,000+</p><p style="color:var(--muted);font-size:14px">Happy Customers</p></div>
+      <div><p style="font-size:2.5rem;font-weight:900;color:var(--indigo)">500+</p><p style="color:var(--muted);font-size:14px">Products Stocked</p></div>
+      <div><p style="font-size:2.5rem;font-weight:900;color:var(--indigo)">4.9★</p><p style="color:var(--muted);font-size:14px">Average Rating</p></div>
+    </div>
+
+    <h2 class="section-title">Meet the Team</h2>
+    <p class="section-sub">The people who make the magic happen</p>
+    <div class="team-grid">
+      <div class="team-card"><span class="team-emoji">👨‍💼</span><p class="team-name">Juan dela Cruz</p><p class="team-role">Founder & CEO</p></div>
+      <div class="team-card"><span class="team-emoji">👩‍💼</span><p class="team-name">Maria Santos</p><p class="team-role">Operations Manager</p></div>
+      <div class="team-card"><span class="team-emoji">🧑‍🎨</span><p class="team-name">Carlo Reyes</p><p class="team-role">Card Specialist</p></div>
+      <div class="team-card"><span class="team-emoji">👩‍🤝‍👩</span><p class="team-name">Ana Bautista</p><p class="team-role">Customer Service</p></div>
+      <div class="team-card"><span class="team-emoji">📦</span><p class="team-name">Renz Flores</p><p class="team-role">Logistics</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-sub">Questions? Orders? We'd love to hear from you!</p>
+    <div class="contact-grid">
+      <div class="contact-form-card" id="contact-form-wrap">
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:1.5rem">Send a Message</h3>
+        <div class="form-group"><label>Your Name</label><input type="text" id="c-name" placeholder="Juan dela Cruz" /></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="c-email" placeholder="juan@email.com" /></div>
+        <div class="form-group"><label>Subject</label>
+          <select id="c-subject">
+            <option>Product Inquiry</option><option>Order Status</option><option>Returns & Refunds</option>
+            <option>Wholesale / Bulk Order</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea id="c-msg" placeholder="Tell us how we can help…"></textarea></div>
+        <button class="btn-primary" style="width:100%" onclick="submitContact()">Send Message 📨</button>
+      </div>
+      <div class="contact-info-card">
+        <div class="info-item"><span class="info-icon">📍</span><div><p class="info-label">Address</p><p class="info-val">123 Colon Street, Cebu City, 6000</p></div></div>
+        <div class="info-item"><span class="info-icon">📞</span><div><p class="info-label">Phone / Viber</p><p class="info-val">+63 32 123 4567</p></div></div>
+        <div class="info-item"><span class="info-icon">📧</span><div><p class="info-label">Email</p><p class="info-val">hello@playworldshop.ph</p></div></div>
+        <div class="info-item"><span class="info-icon">🕐</span><div><p class="info-label">Store Hours</p><p class="info-val">Mon–Sat 9am–7pm · Sun 10am–5pm</p></div></div>
+        <div class="info-item"><span class="info-icon">📘</span><div><p class="info-label">Facebook</p><p class="info-val">fb.com/PlayWorldShopCebu</p></div></div>
+        <div class="info-item"><span class="info-icon">📸</span><div><p class="info-label">Instagram</p><p class="info-val">@playworldcebu</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CART -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h2>🛒 Your Cart</h2>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total"><span>Total</span><span id="cart-total-val">₱0</span></div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Order 🎉</button>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="order-modal">
+  <div class="modal">
+    <span style="font-size:56px">📦</span>
+    <h2 style="margin-top:12px">Confirm Your Order</h2>
+    <p id="order-summary-text">Your items are ready! We'll contact you via Messenger or Viber to arrange payment and delivery.</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="placeOrder()">Yes, Place Order!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS MODAL -->
+<div class="modal-overlay" id="success-modal">
+  <div class="modal">
+    <span style="font-size:64px">🎉</span>
+    <h2 style="margin-top:12px;color:var(--green)">Order Placed!</h2>
+    <p>Thank you! We've received your order. Check your Facebook Messenger or Viber for confirmation and delivery details within 1 hour.</p>
+    <button class="btn-primary" onclick="closeSuccessModal()">Awesome, Thanks!</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">🧸 PlayWorld Shop</span>
+      <p class="footer-tagline">Cebu's most-loved destination for toys, trading cards, and board games. Bringing joy to Filipino families since 2018.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#" onclick="navToShop('toys')">Toys & Figures</a>
+      <a href="#" onclick="navToShop('cards')">Trading Cards</a>
+      <a href="#" onclick="navToShop('board')">Board Games</a>
+      <a href="#" onclick="navToShop('other')">Gifts & More</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#" onclick="navTo('about',null)">About Us</a>
+      <a href="#" onclick="navTo('contact',null)">Contact</a>
+      <a href="#">FAQ</a>
+      <a href="#">Shipping Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">📍 Colon St, Cebu City</a>
+      <a href="#">📞 +63 32 123 4567</a>
+      <a href="#">📧 hello@playworldshop.ph</a>
+      <a href="#">📘 Facebook Page</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 PlayWorld Shop. All rights reserved. Made with ❤️ in Cebu.</div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  { id:1, name:"Pokémon Booster Pack", cat:"cards", price:290, stock:120, emoji:"🃏", desc:"10-card booster with rare foil chance", sales:340 },
+  { id:2, name:"Magic: The Gathering Deck", cat:"cards", price:870, stock:45, emoji:"🧙", desc:"60-card ready-to-play starter deck", sales:210 },
+  { id:3, name:"Yu-Gi-Oh! Structure Deck", cat:"cards", price:580, stock:60, emoji:"⚔️", desc:"40 cards + strategy guide included", sales:178 },
+  { id:4, name:"LEGO Classic Bricks Set", cat:"toys", price:1740, stock:35, emoji:"🧱", desc:"790-piece creative building set", sales:145 },
+  { id:5, name:"RC Racing Car", cat:"toys", price:2900, stock:18, emoji:"🚗", desc:"Remote control, 40km/h top speed", sales:89 },
+  { id:6, name:"Stuffed Teddy Bear", cat:"toys", price:1160, stock:50, emoji:"🧸", desc:"Super soft 30cm plush bear", sales:220 },
+  { id:7, name:"Chess & Checkers Set", cat:"board", price:1450, stock:22, emoji:"♟️", desc:"Wooden 2-in-1 classic game set", sales:67 },
+  { id:8, name:"Uno Card Game", cat:"cards", price:465, stock:80, emoji:"🎴", desc:"112 cards, 2–10 players", sales:410 },
+  { id:9, name:"Dinosaur Figure Pack", cat:"toys", price:928, stock:40, emoji:"🦕", desc:"Set of 12 realistic dino figures", sales:134 },
+  { id:10, name:"Puzzle 1000pcs", cat:"board", price:1102, stock:30, emoji:"🧩", desc:"Landscape scene, 1000 pieces", sales:95 },
+  { id:11, name:"Nerf Blaster", cat:"toys", price:2030, stock:25, emoji:"🔫", desc:"Fires up to 27m, 12 darts included", sales:112 },
+  { id:12, name:"Baseball Cards Bundle", cat:"cards", price:754, stock:55, emoji:"⚾", desc:"50-card lot with stars & rookies", sales:88 },
+  { id:13, name:"Jenga Giant", cat:"board", price:1276, stock:20, emoji:"🗼", desc:"54 premium wood blocks", sales:73 },
+  { id:14, name:"Baby Doll Set", cat:"toys", price:812, stock:38, emoji:"👶", desc:"Comes with accessories & carrier", sales:91 },
+];
+
+let cart = [];
+let activeFilter = 'all';
+
+function fmt(n) { return '₱' + n.toLocaleString('en-PH'); }
+function badgeClass(c) { return 'badge-'+c; }
+function badgeLabel(c) { return {toys:'Toys',cards:'Cards',board:'Board',other:'Other'}[c]||c; }
+
+function buildProductCard(p) {
+  const inCart = cart.find(i=>i.id===p.id);
+  const low = p.stock < 20;
+  return `<div class="product-card">
+    <span class="product-emoji">${p.emoji}</span>
+    <div class="product-meta">
+      <span class="product-badge ${badgeClass(p.cat)}">${badgeLabel(p.cat)}</span>
+      <span class="${low?'stock-low':'stock-ok'} product-stock">${low?'⚠ Only '+p.stock+' left':p.stock+' in stock'}</span>
+    </div>
+    <p class="product-name">${p.name}</p>
+    <p class="product-desc">${p.desc}</p>
+    <div class="product-footer">
+      <span class="product-price">${fmt(p.price)}</span>
+      <button class="add-btn" ${p.stock===0?'disabled':''} onclick="addToCart(${p.id})">${p.stock===0?'Out of Stock':'Add to Cart'}</button>
+    </div>
+  </div>`;
+}
+
+function renderProducts() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const grid = document.getElementById('products-grid');
+  const none = document.getElementById('no-results');
+  const filtered = PRODUCTS.filter(p =>
+    (activeFilter==='all' || p.cat===activeFilter) &&
+    (p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q))
+  );
+  grid.innerHTML = filtered.map(buildProductCard).join('');
+  none.style.display = filtered.length===0?'block':'none';
+}
+
+function renderBestsellers() {
+  const top = [...PRODUCTS].sort((a,b)=>b.sales-a.sales).slice(0,4);
+  document.getElementById('bestsellers').innerHTML = top.map(buildProductCard).join('');
+}
+
+function filterProducts() { renderProducts(); }
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function addToCart(id) {
+  const p = PRODUCTS.find(x=>x.id===id);
+  if (!p || p.stock<=0) return;
+  const ex = cart.find(x=>x.id===id);
+  if (ex) { ex.qty++; } else { cart.push({...p, qty:1}); }
+  updateCartUI();
+  showToast(p.emoji + ' ' + p.name + ' added to cart!');
+  renderProducts(); renderBestsellers();
+}
+
+function removeFromCart(id) { cart = cart.filter(x=>x.id!==id); updateCartUI(); renderProducts(); renderBestsellers(); }
+function changeQty(id, delta) {
+  const item = cart.find(x=>x.id===id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else updateCartUI();
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cart-badge').textContent = count;
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const items = document.getElementById('cart-items');
+  const footer = document.getElementById('cart-footer');
+  if (cart.length===0) {
+    items.innerHTML = `<div class="cart-empty"><span>🛒</span><p>Your cart is empty</p><p style="font-size:13px;margin-top:8px;color:var(--muted)">Add some items to get started!</p></div>`;
+    footer.style.display = 'none';
+  } else {
+    items.innerHTML = cart.map(i=>`<div class="cart-item">
+      <span class="cart-item-emoji">${i.emoji}</span>
+      <div class="cart-item-info">
+        <p class="cart-item-name">${i.name}</p>
+        <p class="cart-item-price">${fmt(i.price)} × ${i.qty} = <strong>${fmt(i.price*i.qty)}</strong></p>
+      </div>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(${i.id},-1)">−</button>
+        <span class="qty-num">${i.qty}</span>
+        <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+        <button class="remove-btn" onclick="removeFromCart(${i.id})">🗑</button>
+      </div>
+    </div>`).join('');
+    document.getElementById('cart-total-val').textContent = fmt(total);
+    footer.style.display = 'block';
+  }
+}
+
+function openCart() { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); }
+function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); }
+
+function openCheckout() {
+  if (cart.length===0) return;
+  const lines = cart.map(i=>`${i.qty}× ${i.name}`).join(', ');
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('order-summary-text').textContent = `${lines}. Total: ${fmt(total)}. We'll contact you to confirm payment & delivery!`;
+  document.getElementById('order-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('order-modal').classList.remove('open'); }
+function placeOrder() {
+  cart = [];
+  updateCartUI();
+  closeModal();
+  closeCart();
+  document.getElementById('success-modal').classList.add('open');
+}
+function closeSuccessModal() { document.getElementById('success-modal').classList.remove('open'); }
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+function showSection(id) {
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function navTo(id, linkEl) {
+  showSection(id);
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  document.getElementById('nav-links').classList.remove('open');
+}
+
+function navToShop(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelector('.nav-links a:nth-child(2)').classList.add('active');
+  showSection('shop');
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b=>{
+    if(b.textContent.toLowerCase().includes(cat)||( cat==='all'&&b.textContent==='All')) b.classList.add('active');
+  });
+  renderProducts();
+}
+
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
+
+function submitContact() {
+  const n=document.getElementById('c-name').value;
+  const e=document.getElementById('c-email').value;
+  const m=document.getElementById('c-msg').value;
+  if(!n||!e||!m){showToast('⚠️ Please fill all fields!');return;}
+  document.getElementById('contact-form-wrap').innerHTML = `<div class="success-msg"><span class="check">✅</span><h3>Message Sent!</h3><p>Thanks ${n}! We'll reply to ${e} within 24 hours.</p><button class="btn-primary" onclick="resetContact()">Send Another Message</button></div>`;
+}
+function resetContact() {
+  document.getElementById('contact-form-wrap').innerHTML = `<h3 style="font-size:18px;font-weight:800;margin-bottom:1.5rem">Send a Message</h3>
+    <div class="form-group"><label>Your Name</label><input type="text" id="c-name" placeholder="Juan dela Cruz" /></div>
+    <div class="form-group"><label>Email Address</label><input type="email" id="c-email" placeholder="juan@email.com" /></div>
+    <div class="form-group"><label>Subject</label><select id="c-subject"><option>Product Inquiry</option><option>Order Status</option><option>Returns & Refunds</option><option>Wholesale / Bulk Order</option><option>Other</option></select></div>
+    <div class="form-group"><label>Message</label><textarea id="c-msg" placeholder="Tell us how we can help…"></textarea></div>
+    <button class="btn-primary" style="width:100%" onclick="submitContact()">Send Message 📨</button>`;
+}
+
+renderProducts();
+renderBestsellers();
+updateCartUI();
+</script>
+</body>
+</html>
