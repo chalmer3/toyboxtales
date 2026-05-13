@@ -14,7 +14,6 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--midnight);overflow-x:hidden;}
 
-  /* NAV */
   nav{background:var(--midnight);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
   .logo{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--ochre);font-style:italic;}
   .logo span{color:#fff;font-style:normal;}
@@ -25,12 +24,10 @@
   .cart-btn:hover{background:var(--ochre-dark)!important;color:#fff!important;}
   .cart-count{position:absolute;top:-6px;right:-6px;background:var(--coral);color:#fff;border-radius:50%;width:18px;height:18px;font-size:.65rem;display:flex;align-items:center;justify-content:center;font-weight:700;}
 
-  /* PAGES */
   .page{display:none;animation:fadeIn .3s ease;}
   .page.active{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  /* HERO */
   .hero{background:var(--midnight);color:#fff;padding:5rem 3rem 4rem;position:relative;overflow:hidden;text-align:center;}
   .hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(232,160,32,.25) 0%,transparent 70%);pointer-events:none;}
   .hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,93,58,.2) 0%,transparent 70%);pointer-events:none;}
@@ -41,7 +38,6 @@
   .btn-primary{display:inline-block;background:var(--ochre);color:var(--midnight);font-weight:700;padding:.8rem 2rem;border-radius:8px;cursor:pointer;border:none;font-size:1rem;font-family:'DM Sans',sans-serif;transition:all .2s;}
   .btn-primary:hover{background:var(--ochre-dark);color:#fff;transform:translateY(-1px);}
 
-  /* SHOP */
   .shop-section{padding:3rem 2rem;max-width:1200px;margin:0 auto;}
   .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;}
   .section-title{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;}
@@ -50,11 +46,9 @@
   .filter-tab.active,.filter-tab:hover{border-color:var(--midnight);background:var(--midnight);color:#fff;}
   .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;}
 
-  /* PRODUCT CARD */
   .product-card{background:var(--warm-white);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:transform .25s,box-shadow .25s;}
   .product-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1);}
 
-  /* CAROUSEL */
   .p-carousel{width:100%;aspect-ratio:1;position:relative;overflow:hidden;background:var(--soft-gray);}
   .c-track{display:flex;height:100%;transition:transform .35s ease;}
   .c-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
@@ -62,7 +56,7 @@
   .c-slide .efb{font-size:4.5rem;}
   .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.18);transition:background .2s;}
   .c-btn:hover{background:#fff;}
-  .c-btn.prev{left:8px;} .c-btn.next{right:8px;}
+  .c-btn.prev{left:8px;}.c-btn.next{right:8px;}
   .c-dots{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:3;}
   .c-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;padding:0;transition:background .2s;}
   .c-dot.active{background:#fff;}
@@ -78,7 +72,6 @@
   .atc-btn:hover{background:var(--forest);transform:scale(1.03);}
   .atc-btn.added{background:var(--forest);}
 
-  /* CART */
   .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;}
   .cart-overlay.open{display:block;}
   .cart-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:var(--warm-white);z-index:201;display:flex;flex-direction:column;transition:right .35s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(0,0,0,.15);}
@@ -106,7 +99,6 @@
   .empty-cart{text-align:center;padding:3rem 1rem;color:var(--slate);}
   .empty-cart .be{font-size:3.5rem;display:block;margin-bottom:1rem;}
 
-  /* ABOUT */
   .about-hero{background:var(--forest);color:#fff;padding:5rem 3rem;text-align:center;}
   .about-hero h1{font-family:'Fraunces',serif;font-size:3rem;font-weight:900;margin-bottom:1rem;}
   .about-hero h1 em{color:var(--ochre);font-style:italic;}
@@ -120,7 +112,6 @@
   .value-card h3{font-family:'Fraunces',serif;font-size:1rem;margin-bottom:.3rem;}
   .value-card p{font-size:.85rem;color:var(--slate);line-height:1.5;}
 
-  /* CONTACT */
   .contact-wrap{max-width:680px;margin:4rem auto;padding:0 2rem;}
   .contact-wrap h1{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:900;margin-bottom:.5rem;}
   .contact-wrap>p{color:var(--slate);margin-bottom:2.5rem;}
@@ -134,7 +125,7 @@
   .sub-btn:hover{background:var(--forest);}
   .ok-msg{display:none;background:#e8f5e9;border:1px solid #a5d6a7;color:var(--forest);padding:1rem;border-radius:8px;font-weight:600;text-align:center;}
 
-  /* ADMIN LOGIN */
+  /* ADMIN */
   .admin-lock{display:flex;align-items:center;justify-content:center;min-height:70vh;padding:2rem;}
   .lock-card{background:var(--warm-white);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:380px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.08);}
   .lock-icon{font-size:3rem;margin-bottom:1rem;}
@@ -147,14 +138,22 @@
   .lock-err{color:var(--coral);font-size:.85rem;margin-top:.75rem;display:none;font-weight:600;}
   .lock-hint{margin-top:1.25rem;font-size:.78rem;color:var(--slate);background:var(--soft-gray);padding:.5rem .75rem;border-radius:8px;}
 
-  /* ADMIN PANEL */
   .admin-panel{display:none;}
-  .adm-wrap{max-width:900px;margin:3rem auto;padding:0 2rem;}
+  .adm-wrap{max-width:960px;margin:3rem auto;padding:0 2rem;}
   .adm-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
   .adm-badge{background:var(--coral);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem .7rem;border-radius:100px;text-transform:uppercase;letter-spacing:1.5px;}
   .adm-hdr h1{font-family:'Fraunces',serif;font-size:2rem;flex:1;}
   .logout-btn{background:var(--soft-gray);border:none;padding:.4rem 1rem;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--slate);font-family:'DM Sans',sans-serif;transition:all .2s;}
   .logout-btn:hover{background:var(--coral);color:#fff;}
+
+  /* EXPORT BANNER */
+  .export-banner{background:linear-gradient(135deg,var(--forest),#1a3d2a);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+  .export-banner-text{flex:1;}
+  .export-banner-text strong{color:#fff;font-size:1rem;display:block;margin-bottom:.2rem;}
+  .export-banner-text span{color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.5;}
+  .export-btn{background:var(--ochre);color:var(--midnight);border:none;padding:.7rem 1.4rem;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.4rem;}
+  .export-btn:hover{background:var(--ochre-dark);color:#fff;transform:translateY(-1px);}
+
   .adm-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
   .adm-card{background:var(--warm-white);border:1px solid var(--border);border-radius:16px;padding:1.5rem;}
   .adm-card h2{font-family:'Fraunces',serif;font-size:1.3rem;margin-bottom:1.5rem;}
@@ -164,27 +163,24 @@
   .adm-submit{background:var(--forest);color:#fff;border:none;padding:.8rem;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;}
   .adm-submit:hover{background:var(--midnight);}
 
-  /* IMAGE URL INPUT */
   .img-url-section{display:flex;flex-direction:column;gap:.5rem;}
   .img-url-section>label{font-size:.82rem;font-weight:600;}
   .img-url-row{display:flex;gap:.5rem;align-items:center;}
   .img-url-row input{flex:1;padding:.55rem .8rem;border:2px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.85rem;background:var(--cream);color:var(--midnight);outline:none;transition:border-color .2s;}
   .img-url-row input:focus{border-color:var(--ochre);}
-  .img-url-row input.error-input{border-color:var(--coral);}
+  .img-url-row input.err{border-color:var(--coral);}
   .img-add-btn{background:var(--midnight);color:#fff;border:none;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
   .img-add-btn:hover{background:var(--forest);}
   .img-add-btn:disabled{background:var(--border);cursor:not-allowed;}
   .img-slot-list{display:flex;flex-direction:column;gap:.4rem;margin-top:.25rem;}
   .img-slot{display:flex;align-items:center;gap:.5rem;background:var(--soft-gray);border-radius:8px;padding:.4rem .6rem;}
-  .img-slot-thumb{width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid var(--border);flex-shrink:0;background:var(--border);}
-  .img-slot-thumb.broken{display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+  .img-slot-thumb{width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid var(--border);flex-shrink:0;}
   .img-slot-url{flex:1;font-size:.78rem;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .img-slot-del{background:none;border:none;color:var(--coral);cursor:pointer;font-size:.9rem;font-weight:700;flex-shrink:0;padding:.1rem .3rem;border-radius:4px;transition:background .2s;}
+  .img-slot-del{background:none;border:none;color:var(--coral);cursor:pointer;font-size:.9rem;font-weight:700;flex-shrink:0;padding:.1rem .3rem;border-radius:4px;}
   .img-slot-del:hover{background:#fee2e2;}
   .img-hint{font-size:.75rem;color:var(--slate);line-height:1.5;}
   .img-hint code{background:var(--soft-gray);padding:.1rem .3rem;border-radius:4px;font-size:.73rem;}
 
-  /* ADMIN LIST */
   .adm-prod-item{display:flex;align-items:center;gap:.75rem;padding:.75rem;background:var(--soft-gray);border-radius:10px;margin-bottom:.6rem;}
   .adm-thumb{width:44px;height:44px;border-radius:8px;overflow:hidden;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
   .adm-thumb img{width:100%;height:100%;object-fit:cover;}
@@ -194,7 +190,6 @@
   .del-btn{background:#fee2e2;border:none;color:var(--coral);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;flex-shrink:0;transition:all .2s;}
   .del-btn:hover{background:var(--coral);color:#fff;}
 
-  /* TOAST */
   .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--midnight);color:#fff;padding:.8rem 1.5rem;border-radius:100px;font-weight:600;font-size:.9rem;z-index:999;transition:transform .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;pointer-events:none;}
   .toast.show{transform:translateX(-50%) translateY(0);}
 
@@ -222,10 +217,7 @@
 
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 <div class="cart-panel" id="cartPanel">
-  <div class="cart-hdr">
-    <h2>Your Cart</h2>
-    <button class="cart-close" onclick="toggleCart()">✕</button>
-  </div>
+  <div class="cart-hdr"><h2>Your Cart</h2><button class="cart-close" onclick="toggleCart()">✕</button></div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-ftr">
     <div class="cart-total"><span>Total</span><span id="cartTotal">₱0.00</span></div>
@@ -300,7 +292,6 @@
 <!-- ══ ADMIN ══ -->
 <div class="page" id="page-admin">
 
-  <!-- LOCK SCREEN -->
   <div class="admin-lock" id="adminLock">
     <div class="lock-card">
       <div class="lock-icon">🔐</div>
@@ -313,7 +304,6 @@
     </div>
   </div>
 
-  <!-- PANEL -->
   <div class="admin-panel" id="adminPanel">
     <div class="adm-wrap">
       <div class="adm-hdr">
@@ -321,9 +311,17 @@
         <span class="adm-badge">Admin</span>
         <button class="logout-btn" onclick="doLogout()">🔒 Logout</button>
       </div>
-      <div class="adm-layout">
 
-        <!-- ADD FORM -->
+      <!-- EXPORT BANNER -->
+      <div class="export-banner">
+        <div class="export-banner-text">
+          <strong>📤 Publish to GitHub</strong>
+          <span>When you're done adding products, download the updated file and upload it to your GitHub repo to make changes visible to everyone.</span>
+        </div>
+        <button class="export-btn" onclick="exportHTML()">⬇️ Download toyshop.html</button>
+      </div>
+
+      <div class="adm-layout">
         <div class="adm-card">
           <h2>➕ Add New Product</h2>
           <div class="adm-form">
@@ -337,8 +335,6 @@
             <input type="text" placeholder="Emoji icon (e.g. 🚂) — shown if no images" id="aEmoji">
             <input type="text" placeholder="Badge label (e.g. NEW, SALE)" id="aBadge">
             <textarea placeholder="Short description" id="aDesc" style="resize:vertical;min-height:70px"></textarea>
-
-            <!-- IMAGE URL INPUT -->
             <div class="img-url-section">
               <label>Product Images <span style="color:var(--slate);font-weight:400">(up to 3)</span></label>
               <div class="img-url-row">
@@ -347,21 +343,18 @@
               </div>
               <div class="img-slot-list" id="imgSlotList"></div>
               <div class="img-hint">
-                📁 For GitHub repo images, upload to an <code>images/</code> folder and type the path e.g. <code>images/toy1.jpg</code><br>
+                📁 Upload photos to <code>images/</code> folder in your GitHub repo, then type e.g. <code>images/toy1.jpg</code><br>
                 🌐 Or paste any full URL e.g. <code>https://i.imgur.com/abc.jpg</code>
               </div>
             </div>
-
             <button class="adm-submit" onclick="adminAdd()">Save Product</button>
           </div>
         </div>
 
-        <!-- PRODUCT LIST -->
         <div class="adm-card">
           <h2>📦 All Products</h2>
           <div id="adminList"></div>
         </div>
-
       </div>
     </div>
   </div>
@@ -372,17 +365,13 @@
 </footer>
 
 <script>
-// ─── CONFIG ──────────────────────────────────────────────────────────────────
-const ADMIN_PW   = 'admin123';
+// ── CONFIG ────────────────────────────────────────────────
+const ADMIN_PW    = 'admin123';
 const STORAGE_KEY = 'wondernest_products';
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let adminUnlocked = false;
-let pendingUrls   = [];   // image URLs being added to current form (max 3)
-const slideIdx    = {};   // productId → current carousel index
-
-// Default seed products (used only if localStorage is empty)
-const defaultProducts = [
+// ── SEED PRODUCTS (baked in — overwritten by export/upload cycle) ──
+// WONDERNEST_PRODUCTS_START
+const SEED_PRODUCTS = [
   {id:1,name:"Classic Wooden Blocks",price:549,category:"toys",emoji:"🧱",badge:"BESTSELLER",desc:"Timeless stacking blocks for creativity",images:[]},
   {id:2,name:"Starter Card Pack",    price:299,category:"cards",emoji:"🃏",badge:"NEW",       desc:"50-card starter pack for beginners",images:[]},
   {id:3,name:"Solar System Puzzle",  price:749,category:"educational",emoji:"🪐",badge:"",   desc:"100-piece puzzle of the solar system",images:[]},
@@ -392,25 +381,29 @@ const defaultProducts = [
   {id:7,name:"Mini Race Cars Set",   price:385,category:"toys",emoji:"🚗",badge:"",         desc:"Set of 6 die-cast mini cars",images:[]},
   {id:8,name:"Number Puzzle Board",  price:320,category:"educational",emoji:"🔢",badge:"NEW",desc:"Count and sort with this wooden board",images:[]},
 ];
+// WONDERNEST_PRODUCTS_END
 
-// ─── PERSISTENCE ─────────────────────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────
+let adminUnlocked = false;
+let pendingUrls   = [];
+const slideIdx    = {};
+
 function loadProducts() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw);
   } catch(e){}
-  return defaultProducts.map(p=>({...p}));
+  return SEED_PRODUCTS.map(p=>({...p}));
 }
-
 function saveProducts() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(products)); } catch(e){}
 }
 
 let products = loadProducts();
-let nid = products.length ? Math.max(...products.map(p=>p.id)) + 1 : 1;
+let nid = products.length ? Math.max(...products.map(p=>p.id))+1 : 1;
 let cart = [];
 
-// ─── PAGES ───────────────────────────────────────────────────────────────────
+// ── PAGES ─────────────────────────────────────────────────
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('nav ul li a').forEach(a=>a.classList.remove('active'));
@@ -418,106 +411,72 @@ function showPage(name) {
   document.getElementById('nav-'+name).classList.add('active');
   if (name==='admin') refreshAdminView();
 }
-
 function refreshAdminView() {
-  document.getElementById('adminLock').style.display  = adminUnlocked ? 'none'  : 'flex';
-  document.getElementById('adminPanel').style.display = adminUnlocked ? 'block' : 'none';
+  document.getElementById('adminLock').style.display  = adminUnlocked?'none':'flex';
+  document.getElementById('adminPanel').style.display = adminUnlocked?'block':'none';
 }
 
-// ─── AUTH ─────────────────────────────────────────────────────────────────────
+// ── AUTH ──────────────────────────────────────────────────
 function doLogin() {
-  if (document.getElementById('adminPw').value === ADMIN_PW) {
-    adminUnlocked = true;
-    document.getElementById('adminPw').value = '';
-    document.getElementById('lockErr').style.display = 'none';
+  if (document.getElementById('adminPw').value===ADMIN_PW) {
+    adminUnlocked=true;
+    document.getElementById('adminPw').value='';
+    document.getElementById('lockErr').style.display='none';
     refreshAdminView();
   } else {
-    document.getElementById('lockErr').style.display = 'block';
-    document.getElementById('adminPw').value = '';
+    document.getElementById('lockErr').style.display='block';
+    document.getElementById('adminPw').value='';
     document.getElementById('adminPw').focus();
   }
 }
-function doLogout() {
-  adminUnlocked = false;
-  refreshAdminView();
-  showToast('🔒 Logged out.');
-}
+function doLogout() { adminUnlocked=false; refreshAdminView(); showToast('🔒 Logged out.'); }
 
-// ─── IMAGE URL MANAGEMENT ─────────────────────────────────────────────────────
+// ── IMAGE URL ─────────────────────────────────────────────
 function addImgUrl() {
-  if (pendingUrls.length >= 3) { showToast('⚠️ Maximum 3 images per product.'); return; }
-  const inp = document.getElementById('imgUrlInput');
-  const url = inp.value.trim();
-  if (!url) { inp.classList.add('error-input'); setTimeout(()=>inp.classList.remove('error-input'),1000); return; }
-  pendingUrls.push(url);
-  inp.value = '';
-  renderImgSlots();
-  updateAddBtn();
+  if (pendingUrls.length>=3){showToast('⚠️ Max 3 images per product.');return;}
+  const inp=document.getElementById('imgUrlInput');
+  const url=inp.value.trim();
+  if (!url){inp.classList.add('err');setTimeout(()=>inp.classList.remove('err'),1000);return;}
+  pendingUrls.push(url); inp.value='';
+  renderImgSlots(); updateAddBtn();
 }
-
-function removeImgUrl(i) {
-  pendingUrls.splice(i,1);
-  renderImgSlots();
-  updateAddBtn();
-}
-
-function updateAddBtn() {
-  document.getElementById('imgAddBtn').disabled = pendingUrls.length >= 3;
-}
-
-function renderImgSlots() {
-  document.getElementById('imgSlotList').innerHTML = pendingUrls.map((url,i)=>`
+function removeImgUrl(i){pendingUrls.splice(i,1);renderImgSlots();updateAddBtn();}
+function updateAddBtn(){document.getElementById('imgAddBtn').disabled=pendingUrls.length>=3;}
+function renderImgSlots(){
+  document.getElementById('imgSlotList').innerHTML=pendingUrls.map((url,i)=>`
     <div class="img-slot">
-      <img class="img-slot-thumb" src="${url}" alt="img ${i+1}"
-           onerror="this.style.display='none';this.nextSibling.style.display='flex'">
-      <span class="img-slot-thumb broken" style="display:none">🖼️</span>
+      <img class="img-slot-thumb" src="${url}" alt="img" onerror="this.style.opacity='.3'">
       <span class="img-slot-url" title="${url}">${url}</span>
-      <button class="img-slot-del" onclick="removeImgUrl(${i})" title="Remove">✕</button>
+      <button class="img-slot-del" onclick="removeImgUrl(${i})">✕</button>
     </div>`).join('');
 }
+function clearImgForm(){pendingUrls=[];document.getElementById('imgUrlInput').value='';renderImgSlots();updateAddBtn();}
 
-function clearImgForm() {
-  pendingUrls = [];
-  document.getElementById('imgUrlInput').value = '';
-  renderImgSlots();
-  updateAddBtn();
+// ── CAROUSEL ──────────────────────────────────────────────
+function carouselHTML(p){
+  const imgs=p.images||[];
+  if(!imgs.length) return `<div class="p-carousel"><div class="c-track"><div class="c-slide"><span class="efb">${p.emoji||'📦'}</span></div></div>${p.badge?`<div class="p-badge">${p.badge}</div>`:''}</div>`;
+  const slides=imgs.map(src=>`<div class="c-slide"><img src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.opacity='.2'"></div>`).join('');
+  const dots=imgs.length>1?`<div class="c-dots">${imgs.map((_,i)=>`<button class="c-dot${i===0?' active':''}" onclick="gotoSlide(${p.id},${i})"></button>`).join('')}</div>`:'';
+  const navs=imgs.length>1?`<button class="c-btn prev" onclick="prevS(${p.id})">&#8249;</button><button class="c-btn next" onclick="nextS(${p.id})">&#8250;</button>`:'';
+  return `<div class="p-carousel" id="pc-${p.id}"><div class="c-track" id="ct-${p.id}">${slides}</div>${p.badge?`<div class="p-badge">${p.badge}</div>`:''} ${navs}${dots}</div>`;
 }
-
-// ─── CAROUSEL ────────────────────────────────────────────────────────────────
-function carouselHTML(p) {
-  const imgs = p.images||[];
-  if (!imgs.length) {
-    return `<div class="p-carousel">
-      <div class="c-track"><div class="c-slide"><span class="efb">${p.emoji||'📦'}</span></div></div>
-      ${p.badge?`<div class="p-badge">${p.badge}</div>`:''}
-    </div>`;
-  }
-  const slides = imgs.map(src=>`<div class="c-slide"><img src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.opacity='.3'"></div>`).join('');
-  const dots = imgs.length>1 ? `<div class="c-dots">${imgs.map((_,i)=>`<button class="c-dot${i===0?' active':''}" onclick="gotoSlide(${p.id},${i})"></button>`).join('')}</div>` : '';
-  const navs = imgs.length>1 ? `<button class="c-btn prev" onclick="prevS(${p.id})">&#8249;</button><button class="c-btn next" onclick="nextS(${p.id})">&#8250;</button>` : '';
-  return `<div class="p-carousel" id="pc-${p.id}">
-    <div class="c-track" id="ct-${p.id}">${slides}</div>
-    ${p.badge?`<div class="p-badge">${p.badge}</div>`:''}
-    ${navs}${dots}
-  </div>`;
+function gotoSlide(pid,idx){
+  slideIdx[pid]=idx;
+  const t=document.getElementById('ct-'+pid);
+  if(t) t.style.transform=`translateX(-${idx*100}%)`;
+  const pc=document.getElementById('pc-'+pid);
+  if(pc) pc.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
 }
+function prevS(pid){const n=(products.find(x=>x.id===pid)?.images||[]).length;gotoSlide(pid,((slideIdx[pid]||0)-1+n)%n);}
+function nextS(pid){const n=(products.find(x=>x.id===pid)?.images||[]).length;gotoSlide(pid,((slideIdx[pid]||0)+1)%n);}
 
-function gotoSlide(pid, idx) {
-  slideIdx[pid] = idx;
-  const t = document.getElementById('ct-'+pid);
-  if (t) t.style.transform = `translateX(-${idx*100}%)`;
-  const pc = document.getElementById('pc-'+pid);
-  if (pc) pc.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
-}
-function prevS(pid) { const n=(products.find(x=>x.id===pid)?.images||[]).length; gotoSlide(pid,((slideIdx[pid]||0)-1+n)%n); }
-function nextS(pid) { const n=(products.find(x=>x.id===pid)?.images||[]).length; gotoSlide(pid,((slideIdx[pid]||0)+1)%n); }
-
-// ─── RENDER PRODUCTS ─────────────────────────────────────────────────────────
-function renderProducts(filter='all') {
-  const grid = document.getElementById('productsGrid');
-  const list = filter==='all' ? products : products.filter(p=>p.category===filter);
-  if (!list.length) { grid.innerHTML='<p style="color:var(--slate);padding:2rem 0">No products in this category yet.</p>'; return; }
-  grid.innerHTML = list.map(p=>`
+// ── RENDER PRODUCTS ───────────────────────────────────────
+function renderProducts(filter='all'){
+  const grid=document.getElementById('productsGrid');
+  const list=filter==='all'?products:products.filter(p=>p.category===filter);
+  if(!list.length){grid.innerHTML='<p style="color:var(--slate);padding:2rem 0">No products in this category yet.</p>';return;}
+  grid.innerHTML=list.map(p=>`
     <div class="product-card">
       ${carouselHTML(p)}
       <div class="p-info">
@@ -531,131 +490,109 @@ function renderProducts(filter='all') {
       </div>
     </div>`).join('');
 }
-
-function filterProducts(cat, btn) {
+function filterProducts(cat,btn){
   document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(cat);
+  btn.classList.add('active'); renderProducts(cat);
 }
 
-// ─── CART ─────────────────────────────────────────────────────────────────────
-function addToCart(id) {
-  const p = products.find(x=>x.id===id);
-  const ex = cart.find(i=>i.id===id);
-  if (ex) ex.qty++; else cart.push({...p,qty:1});
+// ── CART ──────────────────────────────────────────────────
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const ex=cart.find(i=>i.id===id);
+  if(ex) ex.qty++; else cart.push({...p,qty:1});
   updateCartUI();
   showToast(`${p.emoji||'🛍️'} ${p.name} added!`);
-  const btn = document.getElementById('btn-'+id);
-  if (btn) { btn.textContent='✓ Added'; btn.classList.add('added'); setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added');},1500); }
+  const btn=document.getElementById('btn-'+id);
+  if(btn){btn.textContent='✓ Added';btn.classList.add('added');setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added');},1500);}
 }
-
-function updateCartUI() {
-  document.getElementById('cartCount').textContent = cart.reduce((s,i)=>s+i.qty,0);
-  document.getElementById('cartTotal').textContent = `₱${cart.reduce((s,i)=>s+i.price*i.qty,0).toFixed(2)}`;
-  const el = document.getElementById('cartItems');
-  if (!cart.length) { el.innerHTML=`<div class="empty-cart"><span class="be">🛒</span><p>Your cart is empty.</p><p style="margin-top:.5rem;font-size:.85rem;color:var(--slate)">Add some wonderful things!</p></div>`; return; }
-  el.innerHTML = cart.map(i=>{
-    const thumb = i.images&&i.images.length
-      ? `<div class="cart-thumb"><img src="${i.images[0]}" alt="${i.name}" onerror="this.parentElement.textContent='${i.emoji||'📦'}'"></div>`
-      : `<div class="cart-thumb">${i.emoji||'📦'}</div>`;
-    return `<div class="cart-item">${thumb}
-      <div class="ci-det"><div class="ci-name">${i.name}</div><div class="ci-price">₱${(i.price*i.qty).toFixed(2)}</div></div>
-      <div class="c-qty">
-        <button class="q-btn" onclick="chQty(${i.id},-1)">−</button>
-        <span class="q-num">${i.qty}</span>
-        <button class="q-btn" onclick="chQty(${i.id},1)">+</button>
-      </div></div>`;
+function updateCartUI(){
+  document.getElementById('cartCount').textContent=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartTotal').textContent=`₱${cart.reduce((s,i)=>s+i.price*i.qty,0).toFixed(2)}`;
+  const el=document.getElementById('cartItems');
+  if(!cart.length){el.innerHTML=`<div class="empty-cart"><span class="be">🛒</span><p>Your cart is empty.</p><p style="margin-top:.5rem;font-size:.85rem;color:var(--slate)">Add some wonderful things!</p></div>`;return;}
+  el.innerHTML=cart.map(i=>{
+    const thumb=i.images&&i.images.length?`<div class="cart-thumb"><img src="${i.images[0]}" alt="${i.name}"></div>`:`<div class="cart-thumb">${i.emoji||'📦'}</div>`;
+    return `<div class="cart-item">${thumb}<div class="ci-det"><div class="ci-name">${i.name}</div><div class="ci-price">₱${(i.price*i.qty).toFixed(2)}</div></div><div class="c-qty"><button class="q-btn" onclick="chQty(${i.id},-1)">−</button><span class="q-num">${i.qty}</span><button class="q-btn" onclick="chQty(${i.id},1)">+</button></div></div>`;
   }).join('');
 }
+function chQty(id,d){const it=cart.find(i=>i.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(i=>i.id!==id);updateCartUI();}
+function toggleCart(){document.getElementById('cartPanel').classList.toggle('open');document.getElementById('cartOverlay').classList.toggle('open');}
+function checkout(){if(!cart.length)return;showToast('🎉 Thank you for your order!');cart=[];updateCartUI();toggleCart();}
 
-function chQty(id,d) {
-  const it=cart.find(i=>i.id===id);
-  if (!it) return;
-  it.qty+=d;
-  if (it.qty<=0) cart=cart.filter(i=>i.id!==id);
-  updateCartUI();
-}
-function toggleCart() {
-  document.getElementById('cartPanel').classList.toggle('open');
-  document.getElementById('cartOverlay').classList.toggle('open');
-}
-function checkout() {
-  if (!cart.length) return;
-  showToast('🎉 Thank you for your order!');
-  cart=[]; updateCartUI(); toggleCart();
-}
-
-// ─── ADMIN ADD ────────────────────────────────────────────────────────────────
-function adminAdd() {
-  const name  = document.getElementById('aName').value.trim();
-  const price = parseFloat(document.getElementById('aPrice').value);
-  const cat   = document.getElementById('aCategory').value;
-  const emoji = document.getElementById('aEmoji').value.trim()||'📦';
-  const badge = document.getElementById('aBadge').value.trim().toUpperCase();
-  const desc  = document.getElementById('aDesc').value.trim();
-
-  if (!name||isNaN(price)||price<0) { showToast('⚠️ Name and valid price required.'); return; }
-
-  const newProd = {id:nid++, name, price, category:cat, emoji, badge, desc, images:[...pendingUrls]};
-  products.push(newProd);
-  saveProducts();
-  clearImgForm();
-  renderProducts('all');
-  renderAdminList();
+// ── ADMIN ADD / DELETE ────────────────────────────────────
+function adminAdd(){
+  const name=document.getElementById('aName').value.trim();
+  const price=parseFloat(document.getElementById('aPrice').value);
+  const cat=document.getElementById('aCategory').value;
+  const emoji=document.getElementById('aEmoji').value.trim()||'📦';
+  const badge=document.getElementById('aBadge').value.trim().toUpperCase();
+  const desc=document.getElementById('aDesc').value.trim();
+  if(!name||isNaN(price)||price<0){showToast('⚠️ Name and valid price required.');return;}
+  products.push({id:nid++,name,price,category:cat,emoji,badge,desc,images:[...pendingUrls]});
+  saveProducts(); clearImgForm(); renderProducts('all'); renderAdminList();
   ['aName','aPrice','aEmoji','aBadge','aDesc'].forEach(id=>document.getElementById(id).value='');
-  showToast('✅ Product saved!');
+  showToast('✅ Product saved! Remember to Export & upload to GitHub.');
 }
-
-function delProduct(id) {
-  products = products.filter(p=>p.id!==id);
-  cart     = cart.filter(i=>i.id!==id);
-  saveProducts();
-  updateCartUI();
-  renderProducts('all');
-  renderAdminList();
-  showToast('🗑️ Product removed.');
+function delProduct(id){
+  products=products.filter(p=>p.id!==id);
+  cart=cart.filter(i=>i.id!==id);
+  saveProducts(); updateCartUI(); renderProducts('all'); renderAdminList();
+  showToast('🗑️ Removed. Export & upload to GitHub to publish the change.');
 }
-
-function renderAdminList() {
-  const el = document.getElementById('adminList');
-  if (!products.length) { el.innerHTML='<p style="color:var(--slate);text-align:center;padding:2rem 0">No products yet.</p>'; return; }
-  el.innerHTML = products.map(p=>{
-    const thumb = p.images&&p.images.length
-      ? `<div class="adm-thumb"><img src="${p.images[0]}" alt="${p.name}" onerror="this.parentElement.textContent='${p.emoji||'📦'}'"></div>`
-      : `<div class="adm-thumb">${p.emoji||'📦'}</div>`;
-    const imgTag = p.images&&p.images.length ? ` · 📷 ${p.images.length}` : '';
-    return `<div class="adm-prod-item">${thumb}
-      <div class="adm-info">
-        <div class="adm-name">${p.name}</div>
-        <div class="adm-meta">₱${p.price.toFixed(2)} · ${p.category}${p.badge?' · '+p.badge:''}${imgTag}</div>
-      </div>
-      <button class="del-btn" onclick="delProduct(${p.id})" title="Delete">✕</button>
-    </div>`;
+function renderAdminList(){
+  const el=document.getElementById('adminList');
+  if(!products.length){el.innerHTML='<p style="color:var(--slate);text-align:center;padding:2rem 0">No products yet.</p>';return;}
+  el.innerHTML=products.map(p=>{
+    const thumb=p.images&&p.images.length?`<div class="adm-thumb"><img src="${p.images[0]}" alt="${p.name}" onerror="this.style.opacity='.2'"></div>`:`<div class="adm-thumb">${p.emoji||'📦'}</div>`;
+    const imgTag=p.images&&p.images.length?` · 📷 ${p.images.length}`:'';
+    return `<div class="adm-prod-item">${thumb}<div class="adm-info"><div class="adm-name">${p.name}</div><div class="adm-meta">₱${p.price.toFixed(2)} · ${p.category}${p.badge?' · '+p.badge:''}${imgTag}</div></div><button class="del-btn" onclick="delProduct(${p.id})" title="Delete">✕</button></div>`;
   }).join('');
 }
 
-// ─── CONTACT ─────────────────────────────────────────────────────────────────
-function submitContact() {
+// ── EXPORT HTML ───────────────────────────────────────────
+function exportHTML(){
+  // Grab the current page source
+  const src = document.documentElement.outerHTML;
+
+  // Build the new seed JSON — cleanly escaped for injection into JS
+  const newSeed = JSON.stringify(products, null, 2);
+
+  // Replace everything between the marker comments
+  const updated = src.replace(
+    /\/\/ WONDERNEST_PRODUCTS_START[\s\S]*?\/\/ WONDERNEST_PRODUCTS_END/,
+    `// WONDERNEST_PRODUCTS_START\nconst SEED_PRODUCTS = ${newSeed};\n// WONDERNEST_PRODUCTS_END`
+  );
+
+  // Trigger download
+  const blob = new Blob([updated], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'toyshop.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('✅ Downloaded! Upload toyshop.html to GitHub.');
+}
+
+// ── CONTACT ───────────────────────────────────────────────
+function submitContact(){
   const n=document.getElementById('cName').value.trim();
   const e=document.getElementById('cEmail').value.trim();
   const m=document.getElementById('cMessage').value.trim();
-  if (!n||!e||!m) { showToast('⚠️ Please fill all required fields.'); return; }
+  if(!n||!e||!m){showToast('⚠️ Please fill all required fields.');return;}
   document.getElementById('contactOk').style.display='block';
   ['cName','cEmail','cMessage'].forEach(id=>document.getElementById(id).value='');
   setTimeout(()=>document.getElementById('contactOk').style.display='none',4000);
 }
 
-// ─── TOAST ───────────────────────────────────────────────────────────────────
-function showToast(msg) {
+// ── TOAST ─────────────────────────────────────────────────
+function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2400);
+  setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-renderProducts();
-renderAdminList();
-updateCartUI();
+// ── INIT ──────────────────────────────────────────────────
+renderProducts(); renderAdminList(); updateCartUI();
 </script>
 </body>
 </html>
