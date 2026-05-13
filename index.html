@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WonderNest — Toys & Cards</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>WonderNest — Toys &amp; Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     --cream:#FDF6EC; --warm-white:#FFFDF9; --ochre:#E8A020; --ochre-dark:#C07010;
@@ -207,10 +205,10 @@
 <nav>
   <div class="logo">Wonder<span>Nest</span></div>
   <ul>
-    <li><a onclick="showPage('shop')" class="active" id="nav-shop">Shop</a></li>
+    <li><a onclick="showPage('shop')" class="" id="nav-shop">Shop</a></li>
     <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
-    <li><a onclick="showPage('admin')" id="nav-admin">Admin</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact" class="">Contact</a></li>
+    <li><a onclick="showPage('admin')" id="nav-admin" class="active">Admin</a></li>
     <li><a onclick="toggleCart()" class="cart-btn">🛒 Cart <span class="cart-count" id="cartCount">0</span></a></li>
   </ul>
 </nav>
@@ -218,7 +216,7 @@
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 <div class="cart-panel" id="cartPanel">
   <div class="cart-hdr"><h2>Your Cart</h2><button class="cart-close" onclick="toggleCart()">✕</button></div>
-  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-items" id="cartItems"><div class="empty-cart"><span class="be">🛒</span><p>Your cart is empty.</p><p style="margin-top:.5rem;font-size:.85rem;color:var(--slate)">Add some wonderful things!</p></div></div>
   <div class="cart-ftr">
     <div class="cart-total"><span>Total</span><span id="cartTotal">₱0.00</span></div>
     <button class="co-btn" onclick="checkout()">Checkout →</button>
@@ -228,7 +226,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- ══ SHOP ══ -->
-<div class="page active" id="page-shop">
+<div class="page" id="page-shop">
   <div class="hero">
     <div class="hero-tag">✨ New Arrivals Every Week</div>
     <h1>Where Play Meets <em>Wonder</em></h1>
@@ -245,7 +243,67 @@
         <button class="filter-tab" onclick="filterProducts('educational',this)">📚 Educational</button>
       </div>
     </div>
-    <div class="products-grid" id="productsGrid"></div>
+    <div class="products-grid" id="productsGrid">
+    <div class="product-card">
+      <div class="p-carousel"><div class="c-track"><div class="c-slide"><span class="efb">📦</span></div></div><div class="p-badge">SALE</div></div>
+      <div class="p-info">
+        <div class="p-cat">cards</div>
+        <div class="p-name">One piece</div>
+        <div class="p-desc"></div>
+        <div class="p-bottom">
+          <span class="p-price">₱300.00</span>
+          <button class="atc-btn" onclick="addToCart(9)" id="btn-9">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="p-carousel"><div class="c-track"><div class="c-slide"><span class="efb">📦</span></div></div><div class="p-badge">NEW CARD</div></div>
+      <div class="p-info">
+        <div class="p-cat">toys</div>
+        <div class="p-name">Chalmer</div>
+        <div class="p-desc">card desc</div>
+        <div class="p-bottom">
+          <span class="p-price">₱500.00</span>
+          <button class="atc-btn" onclick="addToCart(10)" id="btn-10">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="p-carousel"><div class="c-track"><div class="c-slide"><span class="efb">📦</span></div></div><div class="p-badge">OP</div></div>
+      <div class="p-info">
+        <div class="p-cat">cards</div>
+        <div class="p-name">Zoro card</div>
+        <div class="p-desc"></div>
+        <div class="p-bottom">
+          <span class="p-price">₱599.98</span>
+          <button class="atc-btn" onclick="addToCart(11)" id="btn-11">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="p-carousel" id="pc-12"><div class="c-track" id="ct-12"><div class="c-slide"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKCT_MhDuDxatg2_VmQOe0uDnbcLqvECBfPg8Vx-nA8he2awb-S5gybGq4eOc7HRoVlSy_IOtLwcKLiyW75PjomqeTBa6Se4HupUAlKLE&amp;s" alt="Z" loading="lazy" onerror="this.style.opacity='.2'"></div></div><div class="p-badge">NEW</div> </div>
+      <div class="p-info">
+        <div class="p-cat">cards</div>
+        <div class="p-name">Z</div>
+        <div class="p-desc">asdadadadasa</div>
+        <div class="p-bottom">
+          <span class="p-price">₱34.00</span>
+          <button class="atc-btn" onclick="addToCart(12)" id="btn-12">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="p-carousel" id="pc-13"><div class="c-track" id="ct-13"><div class="c-slide"><img src="imgs/SD.png" alt="GRIPO" loading="lazy" onerror="this.style.opacity='.2'"></div><div class="c-slide"><img src="imgs/SD.png" alt="GRIPO" loading="lazy" onerror="this.style.opacity='.2'"></div></div><div class="p-badge">BATHS</div> <button class="c-btn prev" onclick="prevS(13)">‹</button><button class="c-btn next" onclick="nextS(13)">›</button><div class="c-dots"><button class="c-dot active" onclick="gotoSlide(13,0)"></button><button class="c-dot" onclick="gotoSlide(13,1)"></button></div></div>
+      <div class="p-info">
+        <div class="p-cat">toys</div>
+        <div class="p-name">GRIPO</div>
+        <div class="p-desc">Gripo mani</div>
+        <div class="p-bottom">
+          <span class="p-price">₱699.00</span>
+          <button class="atc-btn" onclick="addToCart(13)" id="btn-13">Add to Cart</button>
+        </div>
+      </div>
+    </div></div>
   </div>
 </div>
 
@@ -265,7 +323,7 @@
     <div class="values-grid">
       <div class="value-card"><div class="v-icon">🌱</div><div><h3>Quality First</h3><p>Every toy is safe, durable, and worth every peso.</p></div></div>
       <div class="value-card"><div class="v-icon">🎓</div><div><h3>Learning Through Play</h3><p>Toys that grow with children and develop real skills.</p></div></div>
-      <div class="value-card"><div class="v-icon">💛</div><div><h3>Community & Joy</h3><p>Play is social. We celebrate shared discovery.</p></div></div>
+      <div class="value-card"><div class="v-icon">💛</div><div><h3>Community &amp; Joy</h3><p>Play is social. We celebrate shared discovery.</p></div></div>
       <div class="value-card"><div class="v-icon">📦</div><div><h3>Nationwide Delivery</h3><p>Fast, secure shipping across the Philippines.</p></div></div>
     </div>
   </div>
@@ -280,7 +338,7 @@
       <div class="fg"><label>Your Name</label><input type="text" placeholder="Juan dela Cruz" id="cName"></div>
       <div class="fg"><label>Email</label><input type="email" placeholder="juan@email.com" id="cEmail"></div>
       <div class="fg"><label>Subject</label>
-        <select id="cSubject"><option>Order Inquiry</option><option>Product Question</option><option>Returns & Refunds</option><option>Wholesale / Bulk Orders</option><option>Other</option></select>
+        <select id="cSubject"><option>Order Inquiry</option><option>Product Question</option><option>Returns &amp; Refunds</option><option>Wholesale / Bulk Orders</option><option>Other</option></select>
       </div>
       <div class="fg"><label>Message</label><textarea placeholder="Tell us how we can help..." id="cMessage"></textarea></div>
       <button class="sub-btn" onclick="submitContact()">Send Message →</button>
@@ -290,21 +348,21 @@
 </div>
 
 <!-- ══ ADMIN ══ -->
-<div class="page" id="page-admin">
+<div class="page active" id="page-admin">
 
-  <div class="admin-lock" id="adminLock">
+  <div class="admin-lock" id="adminLock" style="display: none;">
     <div class="lock-card">
       <div class="lock-icon">🔐</div>
       <h2>Admin Access</h2>
       <p>Enter your password to manage the product catalogue.</p>
       <input class="lock-input" type="password" id="adminPw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
       <button class="lock-btn" onclick="doLogin()">Unlock Admin →</button>
-      <div class="lock-err" id="lockErr">❌ Incorrect password. Try again.</div>
+      <div class="lock-err" id="lockErr" style="display: none;">❌ Incorrect password. Try again.</div>
       <div class="lock-hint">Default password: <strong>admin123</strong></div>
     </div>
   </div>
 
-  <div class="admin-panel" id="adminPanel">
+  <div class="admin-panel" id="adminPanel" style="display: block;">
     <div class="adm-wrap">
       <div class="adm-hdr">
         <h1>Product Manager</h1>
@@ -353,7 +411,7 @@
 
         <div class="adm-card">
           <h2>📦 All Products</h2>
-          <div id="adminList"></div>
+          <div id="adminList"><div class="adm-prod-item"><div class="adm-thumb">📦</div><div class="adm-info"><div class="adm-name">One piece</div><div class="adm-meta">₱300.00 · cards · SALE</div></div><button class="del-btn" onclick="delProduct(9)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb">📦</div><div class="adm-info"><div class="adm-name">Chalmer</div><div class="adm-meta">₱500.00 · toys · NEW CARD</div></div><button class="del-btn" onclick="delProduct(10)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb">📦</div><div class="adm-info"><div class="adm-name">Zoro card</div><div class="adm-meta">₱599.98 · cards · OP</div></div><button class="del-btn" onclick="delProduct(11)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKCT_MhDuDxatg2_VmQOe0uDnbcLqvECBfPg8Vx-nA8he2awb-S5gybGq4eOc7HRoVlSy_IOtLwcKLiyW75PjomqeTBa6Se4HupUAlKLE&amp;s" alt="Z" onerror="this.style.opacity='.2'"></div><div class="adm-info"><div class="adm-name">Z</div><div class="adm-meta">₱34.00 · cards · NEW · 📷 1</div></div><button class="del-btn" onclick="delProduct(12)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="imgs/SD.png" alt="GRIPO" onerror="this.style.opacity='.2'"></div><div class="adm-info"><div class="adm-name">GRIPO</div><div class="adm-meta">₱699.00 · toys · BATHS · 📷 2</div></div><button class="del-btn" onclick="delProduct(13)" title="Delete">✕</button></div></div>
         </div>
       </div>
     </div>
@@ -372,14 +430,61 @@ const STORAGE_KEY = 'wondernest_products';
 // ── SEED PRODUCTS (baked in — overwritten by export/upload cycle) ──
 // WONDERNEST_PRODUCTS_START
 const SEED_PRODUCTS = [
-  {id:1,name:"Classic Wooden Blocks",price:549,category:"toys",emoji:"🧱",badge:"BESTSELLER",desc:"Timeless stacking blocks for creativity",images:[]},
-  {id:2,name:"Starter Card Pack",    price:299,category:"cards",emoji:"🃏",badge:"NEW",       desc:"50-card starter pack for beginners",images:[]},
-  {id:3,name:"Solar System Puzzle",  price:749,category:"educational",emoji:"🪐",badge:"",   desc:"100-piece puzzle of the solar system",images:[]},
-  {id:4,name:"Plush Bunny Rabbit",   price:429,category:"toys",emoji:"🐰",badge:"SALE",      desc:"Super soft bunny for cozy snuggles",images:[]},
-  {id:5,name:"Magic Card Foil Set",  price:899,category:"cards",emoji:"✨",badge:"LIMITED",  desc:"Rare holographic foil collector cards",images:[]},
-  {id:6,name:"Alphabet Flash Cards", price:199,category:"educational",emoji:"🔤",badge:"",  desc:"Fun way to learn A-Z",images:[]},
-  {id:7,name:"Mini Race Cars Set",   price:385,category:"toys",emoji:"🚗",badge:"",         desc:"Set of 6 die-cast mini cars",images:[]},
-  {id:8,name:"Number Puzzle Board",  price:320,category:"educational",emoji:"🔢",badge:"NEW",desc:"Count and sort with this wooden board",images:[]},
+  {
+    "id": 9,
+    "name": "One piece",
+    "price": 300,
+    "category": "cards",
+    "emoji": "📦",
+    "badge": "SALE",
+    "desc": "",
+    "images": []
+  },
+  {
+    "id": 10,
+    "name": "Chalmer",
+    "price": 500,
+    "category": "toys",
+    "emoji": "📦",
+    "badge": "NEW CARD",
+    "desc": "card desc",
+    "images": []
+  },
+  {
+    "id": 11,
+    "name": "Zoro card",
+    "price": 599.98,
+    "category": "cards",
+    "emoji": "📦",
+    "badge": "OP",
+    "desc": "",
+    "images": []
+  },
+  {
+    "id": 12,
+    "name": "Z",
+    "price": 34,
+    "category": "cards",
+    "emoji": "📦",
+    "badge": "NEW",
+    "desc": "asdadadadasa",
+    "images": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKCT_MhDuDxatg2_VmQOe0uDnbcLqvECBfPg8Vx-nA8he2awb-S5gybGq4eOc7HRoVlSy_IOtLwcKLiyW75PjomqeTBa6Se4HupUAlKLE&s"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "GRIPO",
+    "price": 699,
+    "category": "toys",
+    "emoji": "house",
+    "badge": "BATHS",
+    "desc": "Gripo mani",
+    "images": [
+      "imgs/SD.png",
+      "imgs/SD.png"
+    ]
+  }
 ];
 // WONDERNEST_PRODUCTS_END
 
@@ -594,5 +699,6 @@ function showToast(msg){
 // ── INIT ──────────────────────────────────────────────────
 renderProducts(); renderAdminList(); updateCartUI();
 </script>
-</body>
-</html>
+
+
+</body></html>
