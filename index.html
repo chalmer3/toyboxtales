@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ToyBox Tales — Toys &amp; Cards</title>
-<link rel="icon" type="image/ico" href="images/ico.ico">
+<link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/chalmer3/toyboxtales/main/imgs/ico.ico">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
@@ -197,6 +197,21 @@
   .adm-meta{font-size:.78rem;color:var(--slate);}
   .del-btn{background:#fee2e2;border:none;color:var(--coral);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;flex-shrink:0;transition:all .2s;}
   .del-btn:hover{background:var(--coral);color:#fff;}
+  .edit-btn{background:#e8f4e8;border:none;color:var(--forest);width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;flex-shrink:0;transition:all .2s;margin-right:.35rem;}
+  .edit-btn:hover{background:var(--forest);color:#fff;}
+  .adm-prod-actions{display:flex;align-items:center;gap:0;}
+
+  /* EDIT MODAL */
+  .edit-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;align-items:center;justify-content:center;padding:1rem;}
+  .edit-modal-overlay.open{display:flex;}
+  .edit-modal{background:var(--warm-white);border-radius:18px;padding:2rem;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.25);animation:fadeIn .25s ease;}
+  .edit-modal h2{font-family:'Fraunces',serif;font-size:1.3rem;margin-bottom:1.25rem;color:var(--midnight);}
+  .edit-modal-footer{display:flex;gap:.75rem;margin-top:1.25rem;}
+  .edit-save-btn{flex:1;background:var(--forest);color:#fff;border:none;padding:.75rem;border-radius:10px;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s;}
+  .edit-save-btn:hover{background:#1e3d2a;}
+  .edit-cancel-btn{background:var(--soft-gray);color:var(--slate);border:none;padding:.75rem 1.25rem;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;transition:background .2s;}
+  .edit-cancel-btn:hover{background:var(--border);}
+  .field-err{border-color:var(--coral)!important;}
 
   .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--midnight);color:#fff;padding:.8rem 1.5rem;border-radius:100px;font-weight:600;font-size:.9rem;z-index:999;transition:transform .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;pointer-events:none;}
   .toast.show{transform:translateX(-50%) translateY(0);}
@@ -451,7 +466,7 @@ Add the most iconic item in anime history to your collection with this rare 1999
     <h1>Get in Touch</h1>
     <p>Message us through our Facebook Page</p>
     <div class="contact-form">
-      <img src="images/contact.png">
+      <img src="https://raw.githubusercontent.com/chalmer3/toyboxtales/main/imgs/contact.png">
       <a target="_blank" href="https://www.facebook.com/profile.php?id=61576785831757" class="sub-btn">Send Message →</a>
       
     </div>
@@ -507,12 +522,12 @@ Add the most iconic item in anime history to your collection with this rare 1999
             <div class="img-url-section">
               <label>Product Images <span style="color:var(--slate);font-weight:400">(up to 3)</span></label>
               <div class="img-url-row">
-                <input type="text" id="imgUrlInput" placeholder="images/product.jpg  or  https://…" onkeydown="if(event.key==='Enter'){event.preventDefault();addImgUrl();}">
+                <input type="text" id="imgUrlInput" placeholder="filename.jpg / .png / .webp  or  https://…" onkeydown="if(event.key==='Enter'){event.preventDefault();addImgUrl();}">
                 <button class="img-add-btn" onclick="addImgUrl()" id="imgAddBtn" title="Add image">+</button>
               </div>
               <div class="img-slot-list" id="imgSlotList"></div>
               <div class="img-hint">
-                📁 Upload photos to <code>images/</code> folder in your GitHub repo, then type e.g. <code>images/toy1.jpg</code><br>
+                📁 Upload photos to <code>imgs/</code> folder in your GitHub repo, then type e.g. <code>https://raw.githubusercontent.com/chalmer3/toyboxtales/main/imgs/toy1.jpg</code><br>
                 🌐 Or paste any full URL e.g. <code>https://i.imgur.com/abc.jpg</code>
               </div>
             </div>
@@ -525,6 +540,42 @@ Add the most iconic item in anime history to your collection with this rare 1999
           <div id="adminList"><div class="adm-prod-item"><div class="adm-thumb"><img src="https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/697792696_122174965628892861_7221712593192722625_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeEYc--QMj9MnrzJLlNLbrFFBJkOA2Ifi6UEmQ4DYh-LpelYH-gIlMIJbOgT6AMrU0mIjBjh9qDzu4X6FipwqTOw&amp;_nc_ohc=q71V5Ox65G4Q7kNvwGU5RT9&amp;_nc_oc=AdqQs-2kHt4vYgJKOxiR_XjloSlG66dWzlKbt7zDjOppvF5H4O8uFSzsY2LUoz9oU_I&amp;_nc_zt=23&amp;_nc_ht=scontent.fceb3-1.fna&amp;_nc_gid=8XQUCSoohVFTrgr1B9CtxQ&amp;_nc_ss=7b2a8&amp;oh=00_Af42WvgqZqDOMpSuotuAW2-tCiriXN3XDr7UcECkGlThPw&amp;oe=6A0A8150" alt="S75 One Piece Hyper Battle" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">S75 One Piece Hyper Battle</div><div class="adm-meta">₱75000.00 · cards · HOT · 📷 3</div></div><button class="del-btn" onclick="delProduct(13)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/689010219_122174965322892861_3828937208415816759_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeG8k853voHLp-HOmt0kPPWjMY8EpsYwH8kxjwSmxjAfyUJxc-O-MjFLTmXfycbLcT8u5sHapcxuK1ZG1mY3jDzq&amp;_nc_ohc=19067rTnCr0Q7kNvwGfr5YU&amp;_nc_oc=Adp_BNj5mmUG_fQ4h447JrpQaFupE0K3Kttsd5-yyPvrN7AQVxXBWT34Pzsykdh63gg&amp;_nc_zt=23&amp;_nc_ht=scontent.fceb9-1.fna&amp;_nc_gid=0fz_ImXT_rfQo0cxwcip4A&amp;_nc_ss=7b2a8&amp;oh=00_Af7rsekM0bYrkM99n53GwaJ9A92qQ1EppaWCVS5gti83pw&amp;oe=6A0A87FD" alt="One Piece Hyper Battle Carddass S75 Luffy Pirates Going Merry Holo 2001" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">One Piece Hyper Battle Carddass S75 Luffy Pirates Going Merry Holo 2001</div><div class="adm-meta">₱45000.00 · cards · HIDDEN RARE · 📷 3</div></div><button class="del-btn" onclick="delProduct(14)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="https://scontent.fceb9-1.fna.fbcdn.net/v/t39.30808-6/700092163_122174965706892861_3885872268741139448_n.jpg?_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeEEL_MfC_JrpIcFxqu_CTCY9eFMSrqoeBj14UxKuqh4GI-uWYBmMjnLS5WUrzHNyNTC3gGGjtYrj1HzdkdAeNi5&amp;_nc_ohc=EnAYRbkIFUMQ7kNvwHQLQ0q&amp;_nc_oc=AdoVjSzMQXC8lhimNE5sxGojoKQh7XZMjp8DIHLbggRrOh1KBdm3s8VMivoevI1m2tM&amp;_nc_zt=23&amp;_nc_ht=scontent.fceb9-1.fna&amp;_nc_gid=ZL7revhdkq_GbW05iPq4nQ&amp;_nc_ss=7b2a8&amp;oh=00_Af5wLq1BY-v5Xy4CsBqLDXQuNopJvczZm9x2IIJ6GtiV2g&amp;oe=6A0A75E5" alt="2001 One Piece Carddass Hyper Battle - Grand Line 1 - The Long Road Ahead H10 (Hyper/Prizm)" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">2001 One Piece Carddass Hyper Battle - Grand Line 1 - The Long Road Ahead H10 (Hyper/Prizm)</div><div class="adm-meta">₱50000.00 · cards · HOT · 📷 3</div></div><button class="del-btn" onclick="delProduct(15)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/697944214_122174967614892861_400456998925003398_n.jpg?_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeG3X2u1BGLzDW4nY_t7aScjTcX2TBNmLzJNxfZME2YvMgkifnBPzLoX8A-79Zyetwc6p9kqzv3cd_kkUWqnJqnK&amp;_nc_ohc=g6j0EageuRAQ7kNvwHyK_Bf&amp;_nc_oc=AdoAZWKWSVssiDJxBuMENtUyfCPQLj1bCNTrD9vEKDFa3xwa-_5So6Td2Rl4tpuy6uA&amp;_nc_zt=23&amp;_nc_ht=scontent.fceb3-1.fna&amp;_nc_gid=f905saXVnXledKkBvywJUA&amp;_nc_ss=7b2a8&amp;oh=00_Af7rwSU9Ovh6yySGS1pit9Ce-htfV0-eXLrL8LylBA-4oQ&amp;oe=6A0A8B46" alt="Nami - 1999 Bandai Carddass C09" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">Nami - 1999 Bandai Carddass C09</div><div class="adm-meta">₱20000.00 · cards · 1999 - CLEAN · 📷 2</div></div><button class="del-btn" onclick="delProduct(16)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="https://scontent.fceb3-1.fna.fbcdn.net/v/t39.30808-6/697141454_122174966546892861_6222454136936868924_n.jpg?_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_eui2=AeFa-qsb5XwOaxaJnQ9xOItj7zLK23Gi1HDvMsrbcaLUcNMiJLRWf_RAbTg4FrdolnLAteTId6UMC6IGHY8APuKP&amp;_nc_ohc=IcwZhY0l5Z0Q7kNvwEIslDc&amp;_nc_oc=Adp_y5TBVatZm5QX6OknoJJODDjZVT7fAOcwnXXf_GFGuVVILre9gZJjerYhzXtIGLw&amp;_nc_zt=23&amp;_nc_ht=scontent.fceb3-1.fna&amp;_nc_gid=rBzhPB9rPVcist72sXFkLg&amp;_nc_ss=7b2a8&amp;oh=00_Af6hl1855mPSEpKaK10RaDcUtAhJ2mOX95ehwNXuy5ICiA&amp;oe=6A0A7491" alt="Luffy's Hat - 1999 Bandai Carddass C05" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">Luffy's Hat - 1999 Bandai Carddass C05</div><div class="adm-meta">₱24999.98 · cards · 1999 - CLEAN · 📷 3</div></div><button class="del-btn" onclick="delProduct(17)" title="Delete">✕</button></div><div class="adm-prod-item"><div class="adm-thumb"><img src="imgs/S751" alt="S75 One Piece Hyper Battles" onerror="this.style.opacity='.2'" style="opacity: 0.2;"></div><div class="adm-info"><div class="adm-name">S75 One Piece Hyper Battles</div><div class="adm-meta">₱50000.00 · cards · HOT · 📷 3</div></div><button class="del-btn" onclick="delProduct(18)" title="Delete">✕</button></div></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EDIT PRODUCT MODAL ══ -->
+<div class="edit-modal-overlay" id="editModalOverlay" onclick="closeEditModal(event)">
+  <div class="edit-modal" id="editModal">
+    <h2>✏️ Edit Product</h2>
+    <div class="adm-form">
+      <input type="hidden" id="eId">
+      <input type="text" placeholder="Product name" id="eName">
+      <input type="number" placeholder="Price (₱)" id="ePrice" min="0" step="0.01">
+      <select id="eCategory">
+        <option value="toys">🧸 Toys</option>
+        <option value="cards">🃏 Cards</option>
+        <option value="educational">📚 Educational</option>
+      </select>
+      <input type="text" placeholder="Emoji icon (e.g. 🚂)" id="eEmoji">
+      <input type="text" placeholder="Badge label (e.g. NEW, SALE)" id="eBadge">
+      <textarea placeholder="Short description" id="eDesc" style="resize:vertical;min-height:70px"></textarea>
+      <div class="img-url-section">
+        <label>Product Images <span style="color:var(--slate);font-weight:400">(up to 3)</span></label>
+        <div class="img-url-row">
+          <input type="text" id="eImgUrlInput" placeholder="filename.jpg / .png / .webp  or  https://…" onkeydown="if(event.key==='Enter'){event.preventDefault();addEditImgUrl();}">
+          <button class="img-add-btn" onclick="addEditImgUrl()" id="eImgAddBtn" title="Add image">+</button>
+        </div>
+        <div class="img-slot-list" id="eImgSlotList"></div>
+        <div class="img-hint">
+          📁 Type a filename with extension (e.g. <code>toy1.jpg</code>) to use <code>https://raw.githubusercontent.com/chalmer3/toyboxtales/main/imgs/</code> automatically.<br>
+          🌐 Or paste any full URL e.g. <code>https://i.imgur.com/abc.jpg</code>
+        </div>
+      </div>
+    </div>
+    <div class="edit-modal-footer">
+      <button class="edit-cancel-btn" onclick="closeEditModal()">Cancel</button>
+      <button class="edit-save-btn" onclick="saveEditProduct()">💾 Save Changes</button>
     </div>
   </div>
 </div>
@@ -688,11 +739,32 @@ function doLogin() {
 function doLogout() { adminUnlocked=false; refreshAdminView(); showToast('🔒 Logged out.'); }
 
 // ── IMAGE URL ─────────────────────────────────────────────
+const GITHUB_BASE = 'https://raw.githubusercontent.com/chalmer3/toyboxtales/main/imgs/';
+const VALID_EXTS  = ['.jpg','.jpeg','.png','.webp','.gif','.avif'];
+
+function resolveImgUrl(raw) {
+  const trimmed = raw.trim();
+  if (!trimmed) return '';
+  // Already a full URL
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  // Local path like imgs/foo.jpg or images/foo.jpg — strip folder prefix
+  const filename = trimmed.replace(/^(imgs?\/|images?\/)/i, '');
+  return GITHUB_BASE + filename;
+}
+function hasValidExt(raw) {
+  const trimmed = raw.trim();
+  // For full URLs, check the path portion before any query string
+  const path = trimmed.split('?')[0].toLowerCase();
+  return VALID_EXTS.some(ext => path.endsWith(ext));
+}
+
 function addImgUrl() {
   if (pendingUrls.length>=3){showToast('⚠️ Max 3 images per product.');return;}
   const inp=document.getElementById('imgUrlInput');
-  const url=inp.value.trim();
-  if (!url){inp.classList.add('err');setTimeout(()=>inp.classList.remove('err'),1000);return;}
+  const raw=inp.value.trim();
+  if (!raw){inp.classList.add('err');setTimeout(()=>inp.classList.remove('err'),1000);return;}
+  if (!hasValidExt(raw)){showToast('⚠️ Image must end in .jpg .jpeg .png .webp .gif or .avif');inp.classList.add('err');setTimeout(()=>inp.classList.remove('err'),1500);return;}
+  const url = resolveImgUrl(raw);
   pendingUrls.push(url); inp.value='';
   renderImgSlots(); updateAddBtn();
 }
@@ -801,8 +873,71 @@ function renderAdminList(){
   el.innerHTML=products.map(p=>{
     const thumb=p.images&&p.images.length?`<div class="adm-thumb"><img src="${p.images[0]}" alt="${p.name}" onerror="this.style.opacity='.2'"></div>`:`<div class="adm-thumb">${p.emoji||'📦'}</div>`;
     const imgTag=p.images&&p.images.length?` · 📷 ${p.images.length}`:'';
-    return `<div class="adm-prod-item">${thumb}<div class="adm-info"><div class="adm-name">${p.name}</div><div class="adm-meta">₱${p.price.toFixed(2)} · ${p.category}${p.badge?' · '+p.badge:''}${imgTag}</div></div><button class="del-btn" onclick="delProduct(${p.id})" title="Delete">✕</button></div>`;
+    return `<div class="adm-prod-item">${thumb}<div class="adm-info"><div class="adm-name">${p.name}</div><div class="adm-meta">₱${p.price.toFixed(2)} · ${p.category}${p.badge?' · '+p.badge:''}${imgTag}</div></div><div class="adm-prod-actions"><button class="edit-btn" onclick="openEditModal(${p.id})" title="Edit">✏️</button><button class="del-btn" onclick="delProduct(${p.id})" title="Delete">✕</button></div></div>`;
   }).join('');
+}
+
+// ── EDIT MODAL ────────────────────────────────────────────
+let editUrls = [];
+
+function openEditModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  editUrls = [...(p.images || [])];
+  document.getElementById('eId').value    = id;
+  document.getElementById('eName').value  = p.name;
+  document.getElementById('ePrice').value = p.price;
+  document.getElementById('eCategory').value = p.category;
+  document.getElementById('eEmoji').value = p.emoji || '';
+  document.getElementById('eBadge').value = p.badge || '';
+  document.getElementById('eDesc').value  = p.desc  || '';
+  document.getElementById('eImgUrlInput').value = '';
+  renderEditImgSlots(); updateEditAddBtn();
+  document.getElementById('editModalOverlay').classList.add('open');
+}
+function closeEditModal(e) {
+  if (e && e.target !== document.getElementById('editModalOverlay')) return;
+  document.getElementById('editModalOverlay').classList.remove('open');
+}
+function addEditImgUrl() {
+  if (editUrls.length >= 3) { showToast('⚠️ Max 3 images per product.'); return; }
+  const inp = document.getElementById('eImgUrlInput');
+  const raw = inp.value.trim();
+  if (!raw) { inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 1000); return; }
+  if (!hasValidExt(raw)) { showToast('⚠️ Image must end in .jpg .jpeg .png .webp .gif or .avif'); inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 1500); return; }
+  const url = resolveImgUrl(raw);
+  editUrls.push(url); inp.value = '';
+  renderEditImgSlots(); updateEditAddBtn();
+}
+function removeEditImgUrl(i) { editUrls.splice(i, 1); renderEditImgSlots(); updateEditAddBtn(); }
+function updateEditAddBtn() { document.getElementById('eImgAddBtn').disabled = editUrls.length >= 3; }
+function renderEditImgSlots() {
+  document.getElementById('eImgSlotList').innerHTML = editUrls.map((url, i) => `
+    <div class="img-slot">
+      <img class="img-slot-thumb" src="${url}" alt="img" onerror="this.style.opacity='.3'">
+      <span class="img-slot-url" title="${url}">${url}</span>
+      <button class="img-slot-del" onclick="removeEditImgUrl(${i})">✕</button>
+    </div>`).join('');
+}
+function saveEditProduct() {
+  const id    = parseInt(document.getElementById('eId').value);
+  const name  = document.getElementById('eName').value.trim();
+  const price = parseFloat(document.getElementById('ePrice').value);
+  const cat   = document.getElementById('eCategory').value;
+  const emoji = document.getElementById('eEmoji').value.trim() || '📦';
+  const badge = document.getElementById('eBadge').value.trim().toUpperCase();
+  const desc  = document.getElementById('eDesc').value.trim();
+  if (!name || isNaN(price) || price < 0) { showToast('⚠️ Name and valid price required.'); return; }
+  const idx = products.findIndex(x => x.id === id);
+  if (idx === -1) return;
+  products[idx] = { ...products[idx], name, price, category: cat, emoji, badge, desc, images: [...editUrls] };
+  saveProducts(); renderProducts('all'); renderAdminList();
+  // Update cart if item is in it
+  const ci = cart.findIndex(x => x.id === id);
+  if (ci !== -1) cart[ci] = { ...products[idx], qty: cart[ci].qty };
+  updateCartUI();
+  document.getElementById('editModalOverlay').classList.remove('open');
+  showToast('✅ Product updated! Remember to Export & upload to GitHub.');
 }
 
 // ── EXPORT HTML ───────────────────────────────────────────
